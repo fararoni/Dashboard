@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%! String titulo = "Proyecto";
+    <%! String titulo = "Proyecto Dashboard TESE";
         %>
     <%@include file="/layout/head.jsp" %>
 </head>
