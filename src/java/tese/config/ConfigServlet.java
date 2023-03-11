@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import tese.dao.DatabaseDAO;
+import tese.dao.UsuarioDAO;
 
 /**
  *
@@ -45,8 +46,21 @@ public class ConfigServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Probando conexión a BD.</h1>");
-            DatabaseDAO.getConeccion();
+            UsuarioDAO.getConeccion();
             out.println("<h1>Conectado a la base de datos.</h1>");
+            
+            if ( UsuarioDAO.crearTabla() ) {
+                out.println("<h1> Tabla usuario creada </h1>");
+            } else {
+               out.println("<h1> Tabla usuario NO creada </h1>");
+            }
+            //---
+            if ( UsuarioDAO.sqlInsert("juan","juan@gmail.com","123") > 0 ) {
+                out.println("<h1> Usuario insertado</h1>");
+            } else {
+               out.println("<h1> Usuario NO insertado</h1>");
+            }
+            
             
             out.println("</body>");
             out.println("</html>");

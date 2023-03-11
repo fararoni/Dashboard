@@ -47,8 +47,33 @@ public class DatabaseDAO {
     }
 
     //-- Crear tala
-    
+    public static boolean crearTabla (String sql){
+        boolean resultado = false;
+        try {
+            Connection conn = DriverManager.getConnection(dbURL);
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            System.out.println("...| Tabla creada." + sql);  
+            resultado = true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }    
+        return resultado;
+    }
     //-- Actualizacion - Insert, Update, Delete
+    public static int actualizar(String sql) {
+        int cuantos=0;
+        try { 
+            Connection conn = DriverManager.getConnection(dbURL);
+            Statement stmt = conn.createStatement() ;
+                 stmt.executeUpdate(sql);
+            System.out.println("...| Actualizado." + sql);            
+            cuantos = 1;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return cuantos;
+    }
     
     //-- Consulta - Select
     
