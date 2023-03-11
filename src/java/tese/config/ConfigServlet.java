@@ -7,11 +7,15 @@ package tese.config;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import tese.dao.DatabaseDAO;
 
 /**
  *
@@ -40,9 +44,18 @@ public class ConfigServlet extends HttpServlet {
             out.println("<title>Servlet ConfigServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConfigServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Probando conexión a BD.</h1>");
+            DatabaseDAO.getConeccion();
+            out.println("<h1>Conectado a la base de datos.</h1>");
+            
             out.println("</body>");
             out.println("</html>");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConfigServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("<h1> " + ex.getMessage() + "</h1>");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConfigServlet.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("<h1> " + ex.getMessage() + "</h1>");
         }
     }
 
